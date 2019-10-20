@@ -39,9 +39,14 @@ class App extends React.Component {
   
   
   render(){
+    console.log(this.state)
+    if(this.state.loading) {
     return (
       <div className="App">
-        <Pokedex appName="Pokedex" />
+          loading...
+        </div>
+      )
+    }
       </div>
     );
   }
