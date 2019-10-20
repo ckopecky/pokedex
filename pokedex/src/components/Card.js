@@ -1,5 +1,21 @@
+import axios from 'axios';
 import React from 'react';
 
+class Card extends React.Component {
+    constructor(props){
+        super(props);
+            this.state = {
+                name: "", // string
+                abilities: [], // array
+                exp: null, // number
+                id: null, // number
+                height: null, // number
+                sprites: {}, // object with png links (back_default/front_default)
+                types: [], // can have more than one type
+                weight: null // number
+            }
+
+    }
     componentDidMount() {
         axios.get(`${this.props.pokemon.url}`)
             .then(response => {
