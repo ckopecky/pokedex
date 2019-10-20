@@ -47,8 +47,14 @@ class App extends React.Component {
         </div>
       )
     }
+    else {
+      return (
+        <div className="App">
+          <Pokedex appName="Pokedex" pokemon={this.state.pokemon} />
       </div>
     );
+  }
+    
   }
 }
 
