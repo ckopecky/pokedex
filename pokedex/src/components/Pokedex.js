@@ -5,13 +5,18 @@ import Card from "./Card";
 class Pokedex extends Component {
     render() {
         return (
-            <div>
-                {this.props.appName}
-                <Card name={this.props.appName} />
-            </div>
+            <>
+                <h1>{this.props.appName}</h1>
+                <div className="pokedex-container">
+                    {this.props.pokemon.map(pokemon => {
+                        return (
+                            <Card pokemon={pokemon} />
+                        )
+                    })}
+                </div>
+            </>
         );
-    }
-}
+    }}
 
 
 
