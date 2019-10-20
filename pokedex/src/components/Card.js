@@ -39,11 +39,30 @@ class Card extends React.Component {
     }
 
 
-    return (
-        <div>
-            {props.name}
-        </div>
-    );
+    render() {
+        return (
+            <div className="poke-card">
+                <h2>{this.state.name}</h2>
+                <img src={this.state.sprites.front_default} alt={this.state.name}/>
+                <div>
+                Type: {this.state.types.map((type, index) => {
+                        if(index === this.state.types.length - 1) {
+                            return (
+                                <span>{type.type.name}</span>
+                            )
+                        }  else {
+                            return (
+                                <span>{type.type.name}, </span>  
+                            )
+                        } 
+                    })
+                }
+                </div>
+                <div>EXP: {this.state.exp}</div>
+            </div>
+        )
+    }
+    
 };
 
 export default Card;
