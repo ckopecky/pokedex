@@ -21,6 +21,11 @@ class App extends React.Component {
     this.getPokemon();
     
       }
+
+  getOffset = () => {
+    let offset = this.state.offset;
+    offset += this.state.limit;
+    this.setState({ offset })
   }
 
   componentDidMount() {
