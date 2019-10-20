@@ -29,6 +29,16 @@ class Card extends React.Component {
                 this.setState({ name: uppercase, abilities, exp: base_experience, id, height, sprites, types, weight})
             })
     }
+
+    getId = (id) => {
+        if(id.length < 3) {
+            id = id.padStart(3,'0');
+            id = Number(id);
+        } 
+        return id;
+    }
+
+
     return (
         <div>
             {props.name}
