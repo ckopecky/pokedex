@@ -28,7 +28,12 @@ class App extends React.Component {
     this.setState({ offset })
   }
 
-  componentDidMount() {
+  getPokemon = () => {
+    //TODO: Investigate caching pokemon results
+    axios.get(`https://${process.env.REACT_APP_POKEAPI_URL}/?offset=${this.state.offset}&limit=${this.state.limit}`).then(response => {
+      console.log(response.data.results)
+      this.setState({prev: response.data.previous, next: response.data.next, pokemon: response.data.results, count: response.data.count, loading: false})
+    })
 
   }
   
