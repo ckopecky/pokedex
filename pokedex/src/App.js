@@ -20,7 +20,7 @@ class App extends React.Component {
   componentDidMount() {
     this.getPokemon();
     
-      }
+  }
 
   getOffset = () => {
     let offset = this.state.offset;
@@ -41,8 +41,8 @@ class App extends React.Component {
   render(){
     console.log(this.state)
     if(this.state.loading) {
-    return (
-      <div className="App">
+      return (
+        <div className="App">
           loading...
         </div>
       )
@@ -51,9 +51,9 @@ class App extends React.Component {
       return (
         <div className="App">
           <Pokedex appName="Pokedex" pokemon={this.state.pokemon} />
-      </div>
-    );
-  }
+        </div>
+      );
+    }
     
   }
 }
