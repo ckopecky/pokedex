@@ -1,26 +1,61 @@
+import axios from 'axios';
 import React from 'react';
-import logo from './logo.svg';
+import Pokedex from "./components/Pokedex";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+      this.state = {
+        offset: 0, // this is the offset from the top of the array -- will help with pagination
+        limit: 40, // this is the limit per page
+        prev: null,
+        next: null,
+        count: null,
+        pokemon: [],
+        loading: true
+      }
+  }
+
+  componentDidMount() {
+    this.getPokemon();
+    
+  }
+
+  getOffset = () => {
+    let offset = this.state.offset;
+    offset += this.state.limit;
+    this.setState({ offset })
+  }
+
+  getPokemon = () => {
+    //TODO: Investigate caching pokemon results
+    axios.get(`https://${process.env.REACT_APP_POKEAPI_URL}/?offset=${this.state.offset}&limit=${this.state.limit}`).then(response => {
+      console.log(response.data.results)
+      this.setState({prev: response.data.previous, next: response.data.next, pokemon: response.data.results, count: response.data.count, loading: false})
+    })
+
+  }
+  
+  
+  render(){
+    console.log(this.state)
+    if(this.state.loading) {
+      return (
+        <div className="App">
+          loading...
+        </div>
+      )
+    }
+    else {
+      return (
+        <div className="App">
+          <Pokedex appName="Pokedex" pokemon={this.state.pokemon} />
+        </div>
+      );
+    }
+    
+  }
 }
 
 export default App;
